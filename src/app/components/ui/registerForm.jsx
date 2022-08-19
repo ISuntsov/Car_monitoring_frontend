@@ -15,9 +15,7 @@ const RegisterForm = () => {
         email: '',
         password: '',
         sex: 'male',
-        licence: false,
-        qualities: [],
-        profession: '62de41a67812ad2b310899c5'
+        licence: false
     });
     
     const [errors, setErrors] = useState({});
@@ -87,8 +85,7 @@ const RegisterForm = () => {
         const isValid = validate();
         if (!isValid) return;
         const newData = {
-            ...data,
-            qualities: data.qualities.map((q) => q.value)
+            ...data
         };
         
         dispatch(signUp(newData));

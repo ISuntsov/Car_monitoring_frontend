@@ -20,10 +20,8 @@ const MonitorPage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { carId } = useParams();
-    
     const currentCar = useSelector(getCarById(carId))[0];
     // получаем текущий автомобиль текущего юзера
-    // const currentCarId = useSelector(getSelectedCar());
     
     // заполняем Store из БД при изменении автомобиля
     useEffect(() => {
@@ -91,10 +89,11 @@ const MonitorPage = () => {
         return (
             <div className="container mx-auto pt-5">
                 <div className="grid grid-cols-12 w-full justify-items-center">
-                    <div className='p-4 col-start-1 col-span-2 text-xl underline'>
-                        {currentCar.name}
+                    <div className='p-2 col-start-1 col-span-3 text-center'>
+                        <div className="text-xl underline">{currentCar.name}</div>
+                        <div className="">Записей: {notesHistory.length}</div>
                     </div>
-                    <div className='col-start-3 col-span-4 min-w-full'>
+                    <div className='col-start-4 col-span-3 min-w-full'>
                         <TextField
                             label="Поиск по дате..."
                             name="searchQuery"

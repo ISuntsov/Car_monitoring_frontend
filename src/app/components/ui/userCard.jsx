@@ -1,54 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getCurrentUserId } from '../../store/slices/users';
+// import { useHistory } from 'react-router-dom';
+// import { getCurrentUserId } from '../../store/slices/users';
 
 const UserCard = ({ user }) => {
-    const history = useHistory();
+    // const history = useHistory();
+    // const handleClick = () => {
+    //     history.push(history.location.pathname + '/edit');
+    // };
     
-    const currentUserId = useSelector(getCurrentUserId());
-    
-    const handleClick = () => {
-        history.push(history.location.pathname + '/edit');
-    };
     return (
-        <div className="card mb-3">
-            <div className="card-body">
-                {currentUserId === user._id && (
-                    <button
-                        className="position-absolute top-0 end-0 btn btn-light btn-sm"
-                        onClick={handleClick}>
-                        <i className="bi bi-gear"></i>
-                    </button>
-                )}
-                <div className="d-flex flex-column align-items-center text-center position-relative">
-                    <img
-                        src={user.image}
-                        className="rounded-circle"
-                        width="150"
-                        alt={'аватар пользователя'}
-                    />
-                    <div className="mt-3">
-                        <h4>{user.name}</h4>
-                        <p className="text-secondary mb-1">
-                            {/* {user.profession.name} */}
-                        </p>
-                        <div className="text-muted">
-                            <i
-                                className="bi bi-caret-down-fill text-primary"
-                                role="button"></i>
-                            <i
-                                className="bi bi-caret-up text-secondary"
-                                role="button"></i>
-                            {/* <span className="ms-2">{user.rate}</span> */}
-                        </div>
-                    </div>
+        <div className="container py-8 mx-auto">
+            <div className="text-center w-full mb-2">
+                <h1 className="text-2xl font-medium title-font mb-2 text-gray-900">Профиль пользователя</h1>
+            </div>
+            <div className="h-full flex flex-col items-center text-center">
+                <img className="flex-shrink-0 w-[150px] h-56 object-cover object-center mb-4"
+                     src={user.image}/>
+                <div className="w-full">
+                    <h2 className="title-font font-medium text-lg text-gray-900">Логин: {user.name}</h2>
+                    <h3 className="text-gray-500 m-3">e-mail: {user.email}</h3>
+                    <h4 className="text-gray-500 mb-3">Пол: {user.sex === 'male' ? 'Мужской' : 'Женский'}</h4>
                 </div>
             </div>
         </div>
     );
 };
+
 UserCard.propTypes = {
     user: PropTypes.object
 };
