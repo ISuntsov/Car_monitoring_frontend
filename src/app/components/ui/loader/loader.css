@@ -1,0 +1,50 @@
+.skeleton-loader {
+    padding: 15px 10px;
+}
+
+.skeleton-1,
+.skeleton-2,
+.skeleton-3 {
+    float: left;
+    height: 22px;
+    animation: skeleton-load 0.7s linear infinite forwards;
+    background: rgba(13, 109, 252, 0.4);
+    background-image: linear-gradient(
+            to right,
+            #eee 0%,
+            #ccc 20%,
+            #ddd 40%,
+            #eee 100%
+    );
+    background-repeat: no-repeat;
+}
+
+.skeleton-2,
+.skeleton-3 {
+    margin: 10px 10px 0 0;
+}
+
+.skeleton-1 {
+    width: 90%;
+    text-align: center;
+    color: #fff;
+}
+
+.skeleton-2 {
+    width: 48%;
+    clear: both;
+}
+
+.skeleton-3 {
+    width: 21%;
+}
+
+@keyframes skeleton-load {
+    0% {
+        background-position: -468px 0;
+    }
+
+    100% {
+        background-position: 468px 0;
+    }
+}
