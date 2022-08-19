@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, /* useHistory, */useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFuelTypes } from '../../../store/slices/fuelTypes';
 // import { getAutoParts } from '../../../store/slices/autoParts';
@@ -9,7 +9,7 @@ import TextField from '../../common/form/textField';
 import SelectField from '../../common/form/selectField';
 import Loader from '../../ui/loader/loader';
 import BackButton from '../../common/backButton';
-// import { getFuelingHistory } from '../../../store/slices/fuelingHistory';
+import { getFuelingHistory, removeFuelingNote } from '../../../store/slices/fuelingHistory';
 
 const EditCarPage = () => {
     const history = useHistory();
@@ -18,7 +18,7 @@ const EditCarPage = () => {
     const { carId } = useParams();
     const currentCar = useSelector(getCarById(carId))[0];
     const fuelTypes = useSelector(getFuelTypes());
-    // const fuelingNotesByCar = useSelector(getFuelingHistory());
+    const fuelingNotesByCar = useSelector(getFuelingHistory());
     
     // const autoParts = useSelector(getAutoParts());
     
@@ -139,7 +139,12 @@ const EditCarPage = () => {
     
     const handleRemoveCar = (carId) => {
         dispatch(removeCar(carId));
-        
+        // console.log(carId);
+        fuelingNotesByCar.forEach(note => {
+            // console.log(note);
+            // console.log(note.carId === carId);
+            dispatch(removeFuelingNote(note._id));
+        });
         history.push(`/cars`);
     };
     
@@ -207,7 +212,7 @@ const EditCarPage = () => {
                             </button>
                             <BackButton path={`/cars/${carId}`}/>
                             <button
-                                type="submit"
+                                type="button"
                                 className="px-4 py-2 my-2 h-[50px] text-sm rounded-md w-full cursor-pointer border
                                 hover:animate-pulse text-gray-600 bg-sky-100 hover:text-white hover:bg-red-500"
                                 onClick={() => handleRemoveCar(carId)}

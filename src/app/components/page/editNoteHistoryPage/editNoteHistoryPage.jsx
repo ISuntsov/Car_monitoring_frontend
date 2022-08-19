@@ -195,7 +195,7 @@ const EditNoteHistoryPage = () => {
                             </button>
                             <BackButton path={`/cars/${carId}`}/>
                             <button
-                                type="submit"
+                                type="button"
                                 className="px-4 py-2 my-2 h-[50px] text-sm rounded-md w-full cursor-pointer border
                                 hover:animate-pulse text-gray-600 bg-sky-100 hover:text-white hover:bg-red-500"
                                 onClick={() => handleRemoveNote(noteId)}>
